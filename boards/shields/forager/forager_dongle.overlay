@@ -1,0 +1,39 @@
+#include "forager.dtsi"
+
+/delete-node/ &kscan0;
+
+/ {
+    chosen {
+        zmk,kscan = &mock_kscan;
+        zmk,physical-layout = &physical_layout0;
+    };
+    
+    // Split configuration for dongle (central)
+    split: split {
+        compatible = "zmk,split";
+        central-ble-address-offset = <0>;      // Dongle = address 0
+        peripheral-ble-address-offset = <1>;   // Base offset for peripherals
+    };
+    
+    // Create new mock kscan for dongle
+    mock_kscan: mock_kscan_0 {
+        compatible = "zmk,kscan-mock";
+        columns = <0>;
+        rows = <0>;
+        events = <0>;
+    };
+    
+    // Create a new kscan0 that's disabled (in case other overlays reference it)
+    kscan0: kscan_disabled {
+        compatible = "zmk,kscan-mock";
+        columns = <0>;
+        rows = <0>;
+        events = <0>;
+        status = "disabled";
+    };
+};
+
+// Update physical layout to use mock kscan
+&physical_layout0 {
+    kscan = <&mock_kscan>;
+};

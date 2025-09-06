@@ -1,5 +1,14 @@
 #include "forager.dtsi"
 
+/ {
+    // Split configuration for left peripheral
+    split: split {
+        compatible = "zmk,split";
+        central-ble-address-offset = <0>;      // Central (dongle) = address 0
+        peripheral-ble-address-offset = <1>;   // Left = address 1
+    };
+};
+
 &kscan0 {
    col-gpios
    = <&gpio0 2 GPIO_ACTIVE_HIGH>

@@ -1,17 +1,44 @@
-if SHIELD_FORAGER_LEFT
 
+if SHIELD_FORAGER__DONGLE
 config ZMK_KEYBOARD_NAME
     default "Forager"
-
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
+config ZMK_SPLIT
+    default y
+config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+    default 2
+# Need room for 2 peripherals + host device connections
+config BT_MAX_CONN
+    default 7
+config BT_MAX_PAIRED
+    default 7
+endif
 
-config ZMK_STUDIO
+# if SHIELD_FORAGER_LEFT
+
+# #config ZMK_KEYBOARD_NAME
+# #    default "Forager"
+
+# config ZMK_SPLIT_ROLE_CENTRAL
+#     default y
+
+# config ZMK_STUDIO
+#     default y
+
+# endif
+
+if SHIELD_FORAGER_LEFT || SHIELD_FORAGER_RIGHT 
+
+config ZMK_BLE_PASSKEY_ENTRY
+    default n
+
+config CONFIG_ZMK_MOUSE
     default y
 
 endif
 
-if SHIELD_FORAGER_LEFT || SHIELD_FORAGER_RIGHT
+if SHIELD_FORAGER_LEFT || SHIELD_FORAGER_RIGHT || SHIELD_FORAGER__DONGLE
 
 config ZMK_SPLIT
     default y

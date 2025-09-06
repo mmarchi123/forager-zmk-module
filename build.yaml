@@ -22,7 +22,16 @@ include:
   - board: seeeduino_xiao_ble
     shield: forager_left rgbled_adapter
     snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+  
   - board: seeeduino_xiao_ble
     shield: forager_right rgbled_adapter
+    cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+    
+    #settings_reset
   - board: seeeduino_xiao_ble
     shield: settings_reset
+
+      # Dongle (central role)
+  - board: seeeduino_xiao_ble
+    shield: forager_dongle prospector_adapter
