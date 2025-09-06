@@ -33,17 +33,8 @@
     };
 };
 
-/ {
-    physical_layout: physical_layout {
-        compatible = "zmk,physical-layout";
-        display-name = "Forager Dongle";
-        transform = <&default_transform>;  // Reference existing transform
-        
-        keys = </* key definitions */>;
-    };
-};
 
-// Then later you can reference it:
+// Update physical layout to use mock kscan
 &physical_layout0 {
-    // modifications
+    kscan = <&mock_kscan>;
 };
