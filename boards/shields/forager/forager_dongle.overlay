@@ -34,9 +34,12 @@
 };
 
 / {
-    physical_layout0: physical_layout {
+    physical_layout: physical_layout {
         compatible = "zmk,physical-layout";
-        display-name = "Forager Dongle";  // Add this line
+        display-name = "Forager Dongle";
+        transform = <&default_transform>;  // Reference existing transform
+        
+        keys = </* key definitions */>;
     };
 };
 
