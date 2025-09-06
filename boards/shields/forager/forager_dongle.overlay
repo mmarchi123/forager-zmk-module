@@ -33,7 +33,14 @@
     };
 };
 
-// Update physical layout to use mock kscan
+/ {
+    physical_layout0: physical_layout {
+        compatible = "zmk,physical-layout";
+        // layout configuration
+    };
+};
+
+// Then later you can reference it:
 &physical_layout0 {
-    kscan = <&mock_kscan>;
+    // modifications
 };
