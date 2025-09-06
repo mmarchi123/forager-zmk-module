@@ -28,16 +28,6 @@ endif
 
 # endif
 
-if SHIELD_FORAGER_LEFT || SHIELD_FORAGER_RIGHT 
-
-config ZMK_BLE_PASSKEY_ENTRY
-    default n
-
-config CONFIG_ZMK_MOUSE
-    default y
-
-endif
-
 if SHIELD_FORAGER_LEFT || SHIELD_FORAGER_RIGHT || SHIELD_FORAGER__DONGLE
 
 config ZMK_SPLIT
