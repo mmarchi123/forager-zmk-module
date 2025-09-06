@@ -36,7 +36,7 @@
 / {
     physical_layout0: physical_layout {
         compatible = "zmk,physical-layout";
-        // layout configuration
+        display-name = "Forager Dongle";  // Add this line
     };
 };
 
