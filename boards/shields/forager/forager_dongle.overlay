@@ -1,22 +1,22 @@
-#include "forager.dtsi"  // Include forager definitions
+#include "forager.dtsi"  // This includes the default_layout definition
 
-// Delete any existing kscan from the base forager
+// Delete the problematic kscan from dtsi
 /delete-node/ &kscan0;
 
 / {
     chosen {
         zmk,kscan = &mock_kscan;
-        zmk,physical-layout = &physical_layout;  // Use whatever your layout is named
+        zmk,physical-layout = &default_layout;  // Use default_layout, not physical_layout
     };
     
-    // Split configuration for forager dongle (central)
+    // Split configuration for dongle (central)
     split: split {
         compatible = "zmk,split";
         central-ble-address-offset = <0>;      // Dongle = address 0
-        peripheral-ble-address-offset = <1>;   // Left half = address 1, Right = address 2
+        peripheral-ble-address-offset = <1>;   // Base offset for peripherals
     };
     
-    // Mock kscan for dongle (no physical keys)
+    // Create new mock kscan for dongle
     mock_kscan: mock_kscan_0 {
         compatible = "zmk,kscan-mock";
         columns = <0>;
@@ -24,7 +24,7 @@
         events = <0>;
     };
     
-    // Create disabled kscan0 in case other overlays reference it
+    // Create a new kscan0 that's disabled (in case other overlays reference it)
     kscan0: kscan_disabled {
         compatible = "zmk,kscan-mock";
         columns = <0>;
@@ -34,9 +34,7 @@
     };
 };
 
-// Update the physical layout to use mock kscan
-&physical_layout {  // or &physical_layout0 if that's what yours is called
-    kscan = <&mock_kscan>;
-    transform = <&default_transform>;  // Add the missing transform property
-    display-name = "Forager Split Dongle";  // Add the missing display-name
+// Update the default layout to use mock kscan for dongle
+&default_layout {
+    kscan = <&mock_kscan>;  // Change from the matrix kscan to mock kscan
 };
